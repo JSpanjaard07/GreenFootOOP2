@@ -92,10 +92,28 @@ public class MyDodo extends Dodo
             nrStepsTaken++;                 // increment the counter
         }
     }
+    
+    public void layTrailOfEggs() {
+            layEgg();
+        while (!borderAhead()) {
+            move();
+            layEgg();
+        }
+    }
+    
+    public void faceDirection(int direction) {
+        while (getDirection() != direction) {
+            if (direction < NORTH || direction > WEST) {
+                break;
+            }
+            turnRight();
+        }
+    }
+    
+    public void countEggsInRow() {
+        
+    }
 
-    
-    
-    
     /**
      * Walks to edge of the world printing the coordinates at each step
      * 
@@ -226,6 +244,14 @@ public class MyDodo extends Dodo
         if (fenceAhead()) {
             turnRight();
             move();
+        }
+    }
+    
+    public void layTrailOfEggs(int n)
+    {
+        for (int i = 1; i <= n; i++) {
+            move();
+            layEgg();
         }
     }
 }
