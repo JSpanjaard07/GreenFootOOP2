@@ -109,10 +109,6 @@ public class MyDodo extends Dodo
             turnRight();
         }
     }
-    
-    public void countEggsInRow() {
-        
-    }
 
     /**
      * Walks to edge of the world printing the coordinates at each step
@@ -247,11 +243,15 @@ public class MyDodo extends Dodo
         }
     }
     
-    public void layTrailOfEggs(int n)
-    {
-        for (int i = 1; i <= n; i++) {
+    public void countEggsInRow() {
+        int x = 0;
+        while (!borderAhead()) {
+            if (onEgg()) {
+                x++;
+            }
             move();
-            layEgg();
         }
+        System.out.println(x);
     }
+    
 }
