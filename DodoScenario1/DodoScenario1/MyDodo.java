@@ -243,7 +243,7 @@ public class MyDodo extends Dodo
         }
     }
     
-    public void countEggsInRow() {
+    public int countEggsInRow() {
         int x = 0;
         while (!borderAhead()) {
             if (onEgg()) {
@@ -251,7 +251,40 @@ public class MyDodo extends Dodo
             }
             move();
         }
+        if (onEgg()) {
+                x++;
+        }
         System.out.println(x);
+        return x;
+    }
+    
+    public void gotoLocation(int coordX, int coordY) {
+        while (getX() < coordX) {
+            faceDirection(EAST);
+            move();
+        }
+        while (getX() > coordX) {
+            faceDirection(WEST);
+            move();
+        }
+        while (getY() < coordY) {
+            faceDirection(SOUTH);
+            move();
+        }
+        while (getY() > coordY) {
+            faceDirection(NORTH);
+            move();
+        }
+    }
+    
+    public void countEggsInWorld() {
+        int amountOfEggs = 0;
+        for (int i = 0; i < getWorld().getHeight(); i++) {
+            gotoLocation(0, i);
+            faceDirection(EAST);
+            amountOfEggs = amountOfEggs + countEggsInRow();
+        }
+        System.out.println(amountOfEggs);
     }
     
 }
