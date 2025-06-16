@@ -310,4 +310,19 @@ public class MyDodo extends Dodo
             amountOfEggs*=2;
         }
     }
+    
+    public void eggPyramid() {
+        int amountOfEggs = 1;
+        int loc = 6;
+        for (int i = 0; i < getWorld().getHeight(); i++) {
+            gotoLocation(loc, i);
+            faceDirection(EAST);
+            layTrailOfEggs(amountOfEggs);
+            amountOfEggs+=2;
+            loc--;
+            if (loc == 0) {
+                break;
+            }
+        }
+    }
 }
