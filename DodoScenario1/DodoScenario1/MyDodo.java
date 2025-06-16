@@ -93,12 +93,14 @@ public class MyDodo extends Dodo
         }
     }
     
-    public void layTrailOfEggs() {
+    public void layTrailOfEggs(int distance) {
+        int nrStepsTaken = 0;               
+        while ( nrStepsTaken < distance ) { 
             layEgg();
-        while (!borderAhead()) {
             move();
-            layEgg();
+            nrStepsTaken++; 
         }
+        layEgg();
     }
     
     public void faceDirection(int direction) {
@@ -300,4 +302,17 @@ public class MyDodo extends Dodo
         }
     }
     
+    public void heftyMonument() {
+        for (int i = 0; i < getWorld().getHeight(); i++) {
+            gotoLocation(0, i);
+            faceDirection(EAST);
+            int a = i;
+            int y = i;
+            while (a >= 0) {
+                layTrailOfEggs(y);
+                a--;
+            }
+            y*=2;
+        }
+    }
 }
