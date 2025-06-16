@@ -313,7 +313,8 @@ public class MyDodo extends Dodo
     
     public void eggPyramid() {
         int amountOfEggs = 1;
-        int loc = 6;
+        int math = getWorld().getWidth();
+        int loc = math / 2;
         for (int i = 0; i < getWorld().getHeight(); i++) {
             gotoLocation(loc, i);
             faceDirection(EAST);
