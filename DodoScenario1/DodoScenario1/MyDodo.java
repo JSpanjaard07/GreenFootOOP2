@@ -287,4 +287,17 @@ public class MyDodo extends Dodo
         System.out.println(amountOfEggs);
     }
     
+    public void monumentOfEggs() {
+            for (int i = 0; i < getWorld().getHeight(); i++) {
+            gotoLocation(0, i);
+            faceDirection(EAST);
+            int a = i;
+            while (a >= 0) {
+                layEgg();
+                move();
+                a--;
+            }
+        }
+    }
+    
 }
