@@ -86,6 +86,10 @@ public class MyDodo extends Dodo
         return getWorld().getObjects(Egg.class);
     }
     
+    
+    /**
+     * Places every step made in a list
+     */
     public List<Integer> createListOfNumbers() {
         return new ArrayList<> (Arrays.asList( 2, 43, 7, -5, 12, 7 ));
     }
@@ -103,6 +107,9 @@ public class MyDodo extends Dodo
         List<SurpriseEgg>  listOfEgss = SurpriseEgg.generateListOfSurpriseEggs( 12, getWorld() );
     }
     
+    /**
+     * Face a specific direction based on input, east, west, north or south
+     */
     public void faceDirection(int direction) {
         while (getDirection() != direction) {
             if (direction < NORTH || direction > WEST) {
@@ -112,6 +119,10 @@ public class MyDodo extends Dodo
         }
     }
     
+    
+    /**
+     * Uses facedirection and move to go towards a location without teleporting
+     */
     public void gotoLocation(int coordX, int coordY) {
         while (getX() < coordX) {
             faceDirection(EAST);
@@ -131,6 +142,9 @@ public class MyDodo extends Dodo
         }
     }
     
+    /**
+     * Function to return the closest egg
+     */
     public Egg ReturnClosestEgg() {
         List<Egg> eggs = getWorld().getObjects(Egg.class); 
         Egg closestEgg = null;
@@ -149,12 +163,18 @@ public class MyDodo extends Dodo
         return closestEgg;  
     }
     
+    /**
+     * Uses go to location to go towards the location of an egg
+     */
     public void GoToEgg(Egg egg) {
         int eggX = egg.getX();
         int eggY = egg.getY();
         gotoLocation(eggX, eggY);
     }
     
+    /**
+     * The final race, attempts to get as many eggs within 40 steps
+     */
     public void DodoRaceV1() {
         Egg egg = ReturnClosestEgg();
  
@@ -170,6 +190,9 @@ public class MyDodo extends Dodo
         }
     }
     
+    /**
+     * Scoreboard is necessary for the scoreboard to show up and update while the dodo is racing
+     */
     public void ScoreBoard() {
         Mauritius world = (Mauritius) getWorld();
         world.updateScore(Mauritius.MAXSTEPS - myNrOfStepsTaken, NrOfEggs);
